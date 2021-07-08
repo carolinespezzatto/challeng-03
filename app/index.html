@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Challenge Hearthstone</title>
+</head>
+<body class="body">
+    <header class="container-header"> 
+        <div class="logo-header">
+            <img src="logo.png" alt="logo image">
+            <h1 class="title-header">Cards Game</h1>
+        </div>
+        <nav class="container-header-filter">
+            <select name="class" id="class" class="selects" onchange="optionsClass()"> 
+                <option disabled selected style="display: none">Classe</option>
+
+            </select>
+            <select name="type" id="type" class="selects" onchange="optionsType()">
+                <option disabled selected style="display: none">Tipo</option>
+        
+            </select>
+            <select name="faction" id="faction" class="selects" onchange="optionsFaction()">
+                <option disabled selected style="display: none">Facção</option>
+                
+            </select>
+            <select name="race" id="race" class="selects" onchange="optionsRace()">
+                <option disabled selected style="display: none">Raça</option>
+                
+            </select>
+
+            <select name="qtd" id="qtd" class="selects  ">
+                <option disabled selected style="display: none">Quantidade</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="60">60</option>
+            </select>
+        </nav>
+    </header>
+    <section class="section-cards">
+        <div id="container-cards">
+    
+        </div>
+
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="front.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,20 @@
+const express = require ('express')
+const cors = require('cors')
+const app = express()
+const port = 3000
+const getClassFilter = require('./routes/get-class-filter')
+const getFactionFilter = require('./routes/get-faction-filter')
+const getRaceFilter = require('./routes/get-race-filter')
+const getTypeFilter = require('./routes/get-type-filter')
+const getAllCardsInfo = require('./routes/get-all-cards-info')
+
+app.use(cors())
+app.use(express.json())
+app.use (getClassFilter)
+app.use (getFactionFilter)
+app.use (getRaceFilter)
+app.use (getTypeFilter)
+app.use (getAllCardsInfo)
+app.listen(port, () => {
+  console.log(`Inicializando aplicação na porta:${port}`)
+})
