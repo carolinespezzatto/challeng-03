@@ -15,10 +15,11 @@ const raceFilter =(races) => {
 app.get('/raceFilter/:races', function(req, res) {
     const races = req.params.races
     axios.request(raceFilter(races)).then(function (response) {
-        res.json(response.data)
+      const pageSize = req.query.pageSize
+      res.json(response.data.slice(0, pageSize))
     }).catch(function (error) {
-        res.send('error')
-        console.error(error)
+      res.send('error')
+      console.error(error)
     })
 })
 

@@ -15,10 +15,11 @@ const factionFilter =(factions) => {
 app.get('/factionFilter/:factions', function(req, res) {
     const factions = req.params.factions
     axios.request(factionFilter(factions)).then(function (response) {
-        res.json(response.data)
+      const pageSize = req.query.pageSize
+      res.json(response.data.slice(0, pageSize))
     }).catch(function (error) {
-        res.send('error')
-        console.error(error)
+      res.send('error')
+      console.error(error)
     })
 })
 

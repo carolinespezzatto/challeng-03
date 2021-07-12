@@ -15,10 +15,11 @@ const classFilter =(classes) => {
 app.get('/classFilter/:classes', function(req, res) {
     const classes = req.params.classes
     axios.request(classFilter(classes)).then(function (response) {
-        res.json(response.data)
+      const pageSize = req.query.pageSize
+      res.json(response.data.slice(0, pageSize))
     }).catch(function (error) {
-        res.send('error')
-        console.error(error)
+      res.send('error') 
+      console.error(error)
     })
 })
 

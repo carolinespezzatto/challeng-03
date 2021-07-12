@@ -2,6 +2,30 @@ const optionClass = document.getElementById("class")
 const optionType = document.getElementById("type")
 const optionFaction = document.getElementById("faction")
 const optionRace = document.getElementById("race")
+const item = document.getElementById("qtd");
+let lastSelect = '';
+let lastValue = '';
+let pageSize = 15;
+
+function lastTypes(last, value){
+	lastSelect = last
+	lastValue = value
+}
+
+function reload(){
+	if (lastSelect){
+		types(lastSelect, lastValue)
+	}
+}
+
+function setPageSize(num){
+	pageSize = num
+}
+
+item.addEventListener('change', function() {     
+	setPageSize(this.value)     
+	reload() 
+})
 
 const searchClasses = async () => {
   let response = await axios.get('http://localhost:3000/allCardsInfo')
@@ -48,7 +72,8 @@ const searchRaces = async () => {
 }
 
 async function optionsClass() {
-  let response = await axios.get('http://localhost:3000/classFilter/' + optionClass.value)
+  let response = await axios.get(`http://localhost:3000/classFilter/${optionClass.value}?pageSize=${pageSize}`)
+  document.getElementById('container-cards').innerHTML = " "
   for (let i = 0; i < response.data.length; i++) {
     let element = response.data[i]
     if (element.img == null) {
@@ -65,7 +90,8 @@ async function optionsClass() {
 }
 
 async function optionsType() {
-  let response = await axios.get('http://localhost:3000/typeFilter/' + optionType.value)
+  let response = await axios.get(`http://localhost:3000/typeFilter/${optionType.value}?pageSize=${pageSize}`)
+  document.getElementById('container-cards').innerHTML = " "
   for (let i = 0; i < response.data.length; i++) {
     let element = response.data[i]
     if (element.img == null) {
@@ -82,7 +108,8 @@ async function optionsType() {
 }
 
 async function optionsFaction() {
-  let response = await axios.get('http://localhost:3000/factionFilter/' + optionFaction .value)
+  let response = await axios.get(`http://localhost:3000/factionFilter/${optionFaction.value}?pageSize=${pageSize}`)
+  document.getElementById('container-cards').innerHTML = " "
   for (let i = 0; i < response.data.length; i++) {
     let element = response.data[i]
     if (element.img == null) {
@@ -99,7 +126,8 @@ async function optionsFaction() {
 }
 
 async function optionsRace() {
-  let response = await axios.get('http://localhost:3000/raceFilter/' + optionRace .value)
+  let response = await axios.get(`http://localhost:3000/raceFilter/${optionRace.value}?pageSize=${pageSize}`)
+  document.getElementById('container-cards').innerHTML = " "
   for (let i = 0; i < response.data.length; i++) {
     let element = response.data[i]
     if (element.img == null) {

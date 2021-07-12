@@ -15,10 +15,11 @@ const typeFilter =(types) => {
 app.get('/typeFilter/:types', function(req, res) {
     const types = req.params.types
     axios.request(typeFilter(types)).then(function (response) {
-        res.json(response.data)
+      const pageSize = req.query.pageSize
+      res.json(response.data.slice(0, pageSize))
     }).catch(function (error) {
-        res.send('error')
-        console.error(error)
+      res.send('error')
+      console.error(error)
     })
 })
 
